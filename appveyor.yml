@@ -1,5 +1,8 @@
 version: '{build}-{branch}'
 clone_depth: 1
+os: Windows Server 2012
+platform:
+  - x64
 init:
 - ps: |
     mkdir C:\Users\appveyor\.vagrant.d | Out-Null
