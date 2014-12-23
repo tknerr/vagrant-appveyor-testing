@@ -12,6 +12,7 @@ init:
     end
     '@ | Out-File -encoding UTF8 C:\Users\appveyor\.vagrant.d\Vagrantfile
 install:
+- type C:\Users\appveyor\.vagrant.d\Vagrantfile
 - mkdir C:\downloads
 - cd C:\downloads
 - ps: |
