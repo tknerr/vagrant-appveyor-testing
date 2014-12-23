@@ -8,7 +8,7 @@ init:
     mkdir C:\Users\appveyor\.vagrant.d | Out-Null
     echo @'
     Vagrant::configure('2') do |config|
-      config.vm.boot_timeout = 600
+      config.vm.boot_timeout = 1200
     end
     '@ | Out-File -encoding UTF8 C:\Users\appveyor\.vagrant.d\Vagrantfile
 install:
