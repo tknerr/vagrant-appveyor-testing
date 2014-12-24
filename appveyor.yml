@@ -15,7 +15,6 @@ cache:
 - C:\Ruby200\lib\ruby\gems\2.0.0
 - C:\Ruby200\bin
 - C:\UnxUtils
-- C:\VBox-4.3.20
 - C:\Vagrant-1.7.1
 install:
 - type C:\Users\appveyor\.vagrant.d\Vagrantfile
