@@ -12,7 +12,6 @@ init:
     end
     '@ | Out-File -encoding UTF8 C:\Users\appveyor\.vagrant.d\Vagrantfile
 install:
-- ipconfig /flushdns
 - type C:\Users\appveyor\.vagrant.d\Vagrantfile
 - mkdir C:\downloads
 - cd C:\downloads
