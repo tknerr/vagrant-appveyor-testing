@@ -11,18 +11,17 @@ init:
       config.vm.boot_timeout = 1200
     end
     '@ | Out-File -encoding UTF8 C:\Users\appveyor\.vagrant.d\Vagrantfile
-    Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
 cache:
 - C:\Ruby200\lib\ruby\gems\2.0.0
 - C:\Ruby200\bin
 - C:\UnxUtils
 - C:\Vagrant-1.7.1
 install:
-- ps: Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
 - type C:\Users\appveyor\.vagrant.d\Vagrantfile
 - mkdir C:\downloads
 - cd C:\downloads
 - ps: |
+    Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
     if (!(Test-Path -path C:\UnxUtils)) {
         Start-FileDownload "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip"
         Start-Process -FilePath "7z.exe" -ArgumentList "x UnxUtils.zip -oC:\UnxUtils -y" -Wait
