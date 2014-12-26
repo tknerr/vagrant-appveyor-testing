@@ -42,6 +42,7 @@ install:
 - gem --version
 - gem install bundler --quiet --no-ri --no-rdoc
 - bundler --version
+- ps: Get-WindowsFeature
 build_script:
 - set VAGRANT_DEFAULT_PROVIDER=hyperv
 - vagrant up
