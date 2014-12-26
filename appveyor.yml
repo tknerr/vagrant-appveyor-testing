@@ -21,7 +21,6 @@ install:
 - mkdir C:\downloads
 - cd C:\downloads
 - ps: |
-    Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
     if (!(Test-Path -path C:\UnxUtils)) {
         Start-FileDownload "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip"
         Start-Process -FilePath "7z.exe" -ArgumentList "x UnxUtils.zip -oC:\UnxUtils -y" -Wait
