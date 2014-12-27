@@ -4,6 +4,7 @@ os: Windows Server 2012
 platform:
   - x64
 init:
+- ping -n 1 heise.de
 - ps: |
     mkdir C:\Users\appveyor\.vagrant.d | Out-Null
     echo @'
