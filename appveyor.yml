@@ -18,6 +18,7 @@ cache:
 - C:\VBox-4.3.20
 - C:\Vagrant-1.7.1
 install:
+- netsh advfirewall show allprofiles state
 - mkdir C:\downloads
 - cd C:\downloads
 - ps: |
