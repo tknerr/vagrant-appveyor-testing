@@ -17,7 +17,6 @@ cache:
 - C:\UnxUtils
 - C:\Vagrant-1.7.1
 install:
-- ps: Get-WindowsFeature
 - type C:\Users\appveyor\.vagrant.d\Vagrantfile
 - mkdir C:\downloads
 - cd C:\downloads
@@ -31,7 +30,7 @@ install:
         Start-Process -FilePath "VirtualBox-4.3.20-96997-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.20" -Wait
     }
     if (!(Test-Path -path C:\Vagrant-1.7.1)) {
-        Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
+        Start-FileDownload "http://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
         Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.1.msi /qb TARGETDIR=C:\Vagrant-1.7.1" -Wait
     }
 - cd %APPVEYOR_BUILD_FOLDER%
