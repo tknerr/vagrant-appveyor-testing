@@ -12,15 +12,32 @@ init:
     end
     '@ | Out-File -encoding UTF8 C:\Users\appveyor\.vagrant.d\Vagrantfile
 - ps: |
+    ipconfig /all
     Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe"
     Start-Process -FilePath "VirtualBox-4.3.20-96997-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.20" -Wait
     Remove-Item VirtualBox-4.3.20-96997-Win.exe
+    ping -n 1 heise.de
+    ipconfig /all
+    Start-Sleep -s 10
+    ping -n 1 heise.de
+    ipconfig /all
+    Start-Sleep -s 10
+    ping -n 1 heise.de
+    ipconfig /all
+    Start-Sleep -s 10
+    ping -n 1 heise.de
+    ipconfig /all
+    Start-Sleep -s 10
+    ping -n 1 heise.de
+    ipconfig /all
 cache:
 - C:\Ruby200\lib\ruby\gems\2.0.0
 - C:\Ruby200\bin
 - C:\UnxUtils
 - C:\Vagrant-1.7.1
 install:
+- ping -n 1 heise.de
+- ipconfig /all
 - netsh advfirewall set allprofiles state off
 - netsh advfirewall show allprofiles state
 - mkdir C:\downloads
