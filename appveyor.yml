@@ -15,8 +15,8 @@ init:
     Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe"
     Start-Process -FilePath "VirtualBox-4.3.20-96997-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.20" -Wait
     Remove-Item VirtualBox-4.3.20-96997-Win.exe
-    While ((Test-Connection heise.de -count 1 -quiet) -eq "False") {
-        Write-Host "waiting for network..."
+    While ((Test-Connection heise.de -count 1 -quiet) -ne "True") {
+        echo "waiting for network..."
         Start-Sleep 1
     }
 cache:
