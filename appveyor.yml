@@ -43,7 +43,6 @@ install:
 - gem install bundler --quiet --no-ri --no-rdoc
 - bundler --version
 build_script:
-- set VAGRANT_DEFAULT_PROVIDER=hyperv
 - vagrant up
 - vagrant ssh -c "uname -a"
 test: off
