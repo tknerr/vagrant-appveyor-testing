@@ -12,31 +12,24 @@ init:
     end
     '@ | Out-File -encoding UTF8 C:\Users\appveyor\.vagrant.d\Vagrantfile
 - ps: |
+    mkdir C:\downloads | Out-Null
+    cd C:\downloads
+    Start-FileDownload "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip"
+    Start-Process -FilePath "7z.exe" -ArgumentList "x UnxUtils.zip -oC:\UnxUtils -y" -Wait
+    Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
+    Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.1.msi /qb TARGETDIR=C:\Vagrant-1.7.1" -Wait
     Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe"
     Start-Process -FilePath "VirtualBox-4.3.20-96997-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.20" -Wait
-    Remove-Item VirtualBox-4.3.20-96997-Win.exe
-    While ((Test-NetConnection heise.de -Port 80 -InformationLevel Quiet) -ne "True") {
+    cd %APPVEYOR_BUILD_FOLDER%
+- ps: |
+    While ((Test-NetConnection google.com -Port 80 -InformationLevel Quiet) -ne "True") {
         echo "waiting for network..."
         Start-Sleep 1
     }
 cache:
 - C:\Ruby200\lib\ruby\gems\2.0.0
 - C:\Ruby200\bin
-- C:\UnxUtils
-- C:\Vagrant-1.7.1
 install:
-- mkdir C:\downloads
-- cd C:\downloads
-- ps: |
-    if (!(Test-Path -path C:\UnxUtils)) {
-        Start-FileDownload "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip"
-        Start-Process -FilePath "7z.exe" -ArgumentList "x UnxUtils.zip -oC:\UnxUtils -y" -Wait
-    }
-    if (!(Test-Path -path C:\Vagrant-1.7.1)) {
-        Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
-        Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.1.msi /qb TARGETDIR=C:\Vagrant-1.7.1" -Wait
-    }
-- cd %APPVEYOR_BUILD_FOLDER%
 - set PATH=C:\Vagrant-1.7.1\HashiCorp\Vagrant\bin;C:\VBox-4.3.20;C:\Ruby200\bin;%PATH%;C:\UnxUtils\usr\local\wbin
 - vagrant -v
 - VBoxManage -v
