@@ -17,6 +17,7 @@ cache:
 - C:\UnxUtils
 - C:\Vagrant-1.7.1
 install:
+- ps: Get-WindowsFeature
 - type C:\Users\appveyor\.vagrant.d\Vagrantfile
 - mkdir C:\downloads
 - cd C:\downloads
@@ -42,7 +43,6 @@ install:
 - gem --version
 - gem install bundler --quiet --no-ri --no-rdoc
 - bundler --version
-- ps: Get-WindowsFeature
 build_script:
 - set VAGRANT_DEFAULT_PROVIDER=hyperv
 - vagrant up
