@@ -4,7 +4,7 @@ os: Windows Server 2012
 platform:
   - x64
 init:
-- ping -n 1 heise.de
+- ps: Test-NetConnection heise.de -Port 80 -InformationLevel Quiet
 - ps: |
     mkdir C:\Users\appveyor\.vagrant.d | Out-Null
     echo @'
@@ -16,7 +16,7 @@ init:
     Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe"
     Start-Process -FilePath "VirtualBox-4.3.20-96997-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.20" -Wait
     Remove-Item VirtualBox-4.3.20-96997-Win.exe
-    While ((Test-Connection heise.de -count 1 -quiet) -ne "True") {
+    While ((Test-NetConnection heise.de -Port 80 -InformationLevel Quiet) -ne "True") {
         echo "waiting for network..."
         Start-Sleep 1
     }
