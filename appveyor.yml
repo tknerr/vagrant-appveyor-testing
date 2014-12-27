@@ -20,7 +20,7 @@ init:
     Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.1.msi /qb TARGETDIR=C:\Vagrant-1.7.1" -Wait
     Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe"
     Start-Process -FilePath "VirtualBox-4.3.20-96997-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.20" -Wait
-    cd %APPVEYOR_BUILD_FOLDER%
+    cd $env:APPVEYOR_BUILD_FOLDER
 - ps: |
     While ((Test-NetConnection google.com -Port 80 -InformationLevel Quiet) -ne "True") {
         echo "waiting for network..."
