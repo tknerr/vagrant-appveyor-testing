@@ -4,7 +4,11 @@ os: Windows Server 2012
 platform:
   - x64
 init:
-- type C:\Users\appveyor\.ssh\known_hosts
+- ps: |
+    echo @'
+    Host * 
+      LogLevel DEBUG
+    '@ |  Out-File -encoding UTF8 C:\Users\appveyor\.ssh\config
 - ps: |
     mkdir C:\Users\appveyor\.vagrant.d | Out-Null
     echo @'
