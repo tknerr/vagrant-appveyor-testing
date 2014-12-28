@@ -38,6 +38,6 @@ install:
 - gem install bundler --quiet --no-ri --no-rdoc
 - bundler --version
 build_script:
-- vagrant up --debug
+- vagrant up
 - vagrant ssh -c "uname -a"
 test: off
