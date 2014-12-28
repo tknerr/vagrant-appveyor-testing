@@ -5,6 +5,8 @@ platform:
   - x64
 init:
 - echo %PATH%
+- ps: get-command ssh
+- ssh -v
 - ps: |
     mkdir C:\Users\appveyor\.vagrant.d | Out-Null
     echo @'
