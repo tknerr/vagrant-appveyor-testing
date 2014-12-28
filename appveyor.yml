@@ -4,7 +4,7 @@ os: Windows Server 2012
 platform:
   - x64
 init:
-- dir C:\Users\appveyor\.ssh
+- type C:\Users\appveyor\.ssh\known_hosts
 - ps: |
     mkdir C:\Users\appveyor\.vagrant.d | Out-Null
     echo @'
