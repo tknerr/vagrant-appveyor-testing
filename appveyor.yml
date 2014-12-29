@@ -38,6 +38,6 @@ install:
 - gem install bundler --quiet --no-ri --no-rdoc
 - bundler --version
 build_script:
-- vagrant up
+- vagrant up || ssh vagrant@127.0.0.1 -p 2222 -i C:\Users\appveyor\.vagrant.d\insecure_private_key -vvv
 - vagrant ssh -c "uname -a"
 test: off
