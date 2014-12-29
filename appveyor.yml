@@ -13,8 +13,6 @@ init:
 - ps: |
     mkdir C:\downloads | Out-Null
     cd C:\downloads
-    Start-FileDownload "http://downloads.sourceforge.net/project/unxutils/unxutils/current/UnxUtils.zip"
-    Start-Process -FilePath "7z.exe" -ArgumentList "x UnxUtils.zip -oC:\UnxUtils -y" -Wait
     Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
     Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.1.msi /qb TARGETDIR=C:\Vagrant-1.7.1" -Wait
     Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe"
@@ -25,18 +23,10 @@ init:
         echo "waiting for network..."
         Start-Sleep 1
     }
-cache:
-- C:\Ruby200\lib\ruby\gems\2.0.0
-- C:\Ruby200\bin
 install:
-- set PATH=C:\Vagrant-1.7.1\HashiCorp\Vagrant\bin;C:\VBox-4.3.20;C:\Ruby200\bin;%PATH%;C:\UnxUtils\usr\local\wbin
+- set PATH=C:\Vagrant-1.7.1\HashiCorp\Vagrant\bin;C:\VBox-4.3.20;%PATH%
 - vagrant -v
 - VBoxManage -v
-- tar --version
-- ruby --version
-- gem --version
-- gem install bundler --quiet --no-ri --no-rdoc
-- bundler --version
 build_script:
 - vagrant up || ssh vagrant@127.0.0.1 -p 2222 -i C:\Users\appveyor\.vagrant.d\insecure_private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -vvv -C "pwd"
 - vagrant ssh -c "uname -a"
