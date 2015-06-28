@@ -13,8 +13,8 @@ init:
 - ps: |
     mkdir C:\downloads | Out-Null
     cd C:\downloads
-    Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi"
-    Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.1.msi /qb TARGETDIR=C:\Vagrant-1.7.1" -Wait
+    Start-FileDownload "https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi"
+    Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_1.7.2.msi /qb TARGETDIR=C:\Vagrant-1.7.2" -Wait
     Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.20/VirtualBox-4.3.20-96997-Win.exe"
     Start-Process -FilePath "VirtualBox-4.3.20-96997-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.20" -Wait
     cd $env:APPVEYOR_BUILD_FOLDER
@@ -24,7 +24,7 @@ init:
         Start-Sleep 1
     }
 install:
-- set PATH=C:\Vagrant-1.7.1\HashiCorp\Vagrant\bin;C:\VBox-4.3.20;%PATH%
+- set PATH=C:\Vagrant-1.7.2\HashiCorp\Vagrant\bin;C:\VBox-4.3.20;%PATH%
 - vagrant -v
 - VBoxManage -v
 - ssh -V
